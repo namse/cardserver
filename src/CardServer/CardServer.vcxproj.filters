@@ -9,8 +9,19 @@
     <ClInclude Include="Game.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Field.h" />
     <ClInclude Include="Card.h" />
+    <ClInclude Include="Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Hands.h">
+      <Filter>Player\Hands</Filter>
+    </ClInclude>
+    <ClInclude Include="Field.h">
+      <Filter>Player\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="Decks.h">
+      <Filter>Player\Decks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CardServer.cpp" />
@@ -18,12 +29,35 @@
     <ClCompile Include="Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Field.cpp" />
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Hands.cpp">
+      <Filter>Player\Hands</Filter>
+    </ClCompile>
+    <ClCompile Include="Field.cpp">
+      <Filter>Player\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="Decks.cpp">
+      <Filter>Player\Decks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
       <UniqueIdentifier>{ae67be86-5a53-41a3-afa5-8da219851315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{270e291c-df75-41a1-8ced-dc9cb0d22568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player\Decks">
+      <UniqueIdentifier>{f4006aac-f7b0-4756-a66e-191019dccf18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player\Hands">
+      <UniqueIdentifier>{d538e990-3d8c-4a84-9200-e6f16206f20d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player\Field">
+      <UniqueIdentifier>{690d05dc-6441-4c6e-8946-c3680830172d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

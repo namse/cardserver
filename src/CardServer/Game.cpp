@@ -11,15 +11,38 @@ Game::~Game()
 {
 }
 
+/*
+들어올 패킷
+1. 플레이어
+2. 카드 종류 : 비전 아니면 유닛
+3. 내 핸드에 어떤걸 말하는건지
+4. 추가행동
+4.1 내가 이 유닛을 어디에 놓을건지
+4.2 내가 이 마법을 누구에게 쓸건지
+4.2.1 내가 마법을 몇명에게 쓸건지
+4.2.2 내가 마법을 각각 누구에게 쓸건지
 
-bool Game::OnCard(PlayerType playerType, CardType type, DeckIndex index)
+<확인작업>
+유닛인 경우
+1. 내가 그 자리에 놓을 수 있는지 확인
+2. 마나가 충분히 있는지 확인
+3. 효과를 사용할 수 있는지 확인
+
+비전인 경우
+1. 마나가 충분히 있는지 확인
+2. 효과를 사용할 수 있는지 확인
+*/ 
+
+bool Game::OnCard(PlayerType playerType, Hands::CardType cardType, 
+	Hands::CardIndex handsIndex, Field::FrontOrBack fieldFrontOrBack,
+	Field::CardIndex fieldIndex)
 {
 	// 1. Available Card?
-	if (type == UNIT)
+	if (cardType == Hands::CardType::UNIT)
 	{
 		if (playerType == m_TurnPlayerType)
 		{
-			if (index >= m_Player->m_PlayerHandsUnit.size())
+			if (nullptr == GetPlayer(playerType)->GetHands()->GetCard(cardType, handsIndex))
 			{
 				return false;
 			}
@@ -38,16 +61,24 @@ bool Game::OnCard(PlayerType playerType, CardType type, DeckIndex index)
 		}
 		else
 		{
-			if (m_ArcanePlayerTurn != playerType)
+			if (m_ArcaneTurnPlayerType != playerType)
 				return false;
 		}
 	}
 	
 
-
-	// 2. Send Card Packet
-
 	// 3. Unit or Arcane?
+	if (cardType == Hands::CardType::UNIT)
+	{
+		if (nullptr == GetPlayer(playerType)->GetField()->GetCard(fieldFrontOrBack, fieldIndex))
+		{
+
+		}
+	}
+	else // ARCANE
+	{
+
+	}
 
 	// 3.0 Reduce Mana
 
@@ -56,4 +87,29 @@ bool Game::OnCard(PlayerType playerType, CardType type, DeckIndex index)
 
 
 	// 3.2 Arcane : Wait for ends.
+
+
+	// 4. Send Card Packet
+}
+
+PlayerID Game::GetPlayerID(Player* player)	
+{
+	//assert(player == &m_Player1 || player == &m_Player2);
+	return player == &m_Player1 ? m_Player1ID : m_Player2ID;
+}
+
+PlayerID Game::GetPlayerID(PlayerType playerType)
+{
+	return playerType == PLAYER_1 ? m_Player1ID : m_Player2ID;
+}
+
+Player* Game::GetPlayer(PlayerID playerID)
+{
+	//assert(playerID == m_Player1ID || playerID == m_Player2ID);
+	return playerID == m_Player1ID ? &m_Player1 : &m_Player2;
+}
+
+Player* Game::GetPlayer(PlayerType playerType)
+{
+	return playerType == PLAYER_1 ? &m_Player1 : &m_Player2;
 }
