@@ -2,7 +2,59 @@ syntax = "proto2";
 
 package protocol;
 
-enum MessageType {
+enum MessageType
+{
+	PKT_CS_CARD	=	0;
+	PKT_MAX		=	1;
+}
 
- PKT_MAX = 0;
+message Card
+{
+	enum CardType
+	{
+		CT_UNIT	=	0;
+		CT_ARCANE	=	1;
+	}
+	
+	enum HandsIndex
+	{
+		HI_FIRST	=	0;
+		HI_SECOND	=	1;
+		HI_THIRD	=	2;
+		HI_FOURTH	=	3;
+	}
+
+	enum FieldType
+	{
+		FT_MINE		=	0;
+		FT_OPPOSITE	=	1;
+	}
+
+	enum FieldFrontOrBack
+	{
+		FFOB_FRONT	=	0;
+		FFOB_BACK	=	1;
+	}
+
+	enum FieldIndex
+	{
+		FI_FIRST	=	0;
+		FI_SECOND	=	1;
+		FI_THIRD	=	2;
+	}
+
+	message CardTarget
+	{
+		required FieldType fieldType	=	1;
+		required FieldFrontOrBack		=	2;
+		required FieldIndex				=	3;
+	}
+
+	required fixed32 playerID		=	1;
+	required fixed32 gameID			=	2;
+	required CardType cardType		=	3;
+	optional HandsIndex handsIndex	=	4;
+
+
+	repeated CardTarget cardTarget	=	5;
 }
