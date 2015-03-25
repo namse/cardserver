@@ -33,12 +33,14 @@ Game::~Game()
 2. 효과를 사용할 수 있는지 확인
 */ 
 
-bool Game::OnCard(PlayerType playerType, Hands::CardType cardType, 
-	Hands::CardIndex handsIndex, Field::FrontOrBack fieldFrontOrBack,
-	Field::CardIndex fieldIndex)
+bool Game::OnCard(protocol::Card inPacket)
 {
+	auto playerType = GetPlayerType(inPacket.playerid());
+	auto cardType = (Hands::CardType)(inPacket.cardtype());
+	auto handsIndex = (Hands::CardIndex)(inPacket.handsindex());
+
 	// 1. Available Card?
-	if (cardType == Hands::CardType::UNIT)
+	if (inPacket.cardtype() == Hands::CardType::UNIT)
 	{
 		if (playerType == m_TurnPlayerType)
 		{
@@ -65,30 +67,17 @@ bool Game::OnCard(PlayerType playerType, Hands::CardType cardType,
 				return false;
 		}
 	}
+
+
+	Card* card = GetPlayer(playerType)->GetHands()->GetCard(cardType, handsIndex);
+	if (card == nullptr)
+		return false;
+
+	if (card->AvailableAction(inPacket, this) == false)
+		return false;
+
+	card->DoAction(inPacket, this);
 	
-
-	// 3. Unit or Arcane?
-	if (cardType == Hands::CardType::UNIT)
-	{
-		if (nullptr == GetPlayer(playerType)->GetField()->GetCard(fieldFrontOrBack, fieldIndex))
-		{
-
-		}
-	}
-	else // ARCANE
-	{
-
-	}
-
-	// 3.0 Reduce Mana
-
-	// 3.1 Unit : Place.
-	// 3.1.1 Unit:OnPlace.
-
-
-	// 3.2 Arcane : Wait for ends.
-
-
 	// 4. Send Card Packet
 }
 
@@ -112,4 +101,16 @@ Player* Game::GetPlayer(PlayerID playerID)
 Player* Game::GetPlayer(PlayerType playerType)
 {
 	return playerType == PLAYER_1 ? &m_Player1 : &m_Player2;
+}
+
+Game::PlayerType Game::GetPlayerType(Player* player)
+{
+	//assert(player == &m_Player1 || player == &m_Player2);
+	return player == &m_Player1 ? PlayerType::PLAYER_1 : PlayerType::PLAYER_2;
+}
+
+Game::PlayerType Game::GetPlayerType(PlayerID playerID)
+{
+	//assert(playerID == m_Player1ID || playerID == m_Player2ID);
+	return playerID == m_Player1ID ? PlayerType::PLAYER_1 : PlayerType::PLAYER_2;
 }

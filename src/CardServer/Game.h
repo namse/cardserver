@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "protocol.pb.h"
 typedef unsigned int PlayerID;
 typedef unsigned int GameID;
 
@@ -26,9 +27,7 @@ public:
 
 	void OnStart();
 	void OnTurn();
-	bool OnCard(PlayerType playerType, Hands::CardType cardType,
-		Hands::CardIndex handsIndex, Field::FrontOrBack fieldFrontOrBack,
-		Field::CardIndex fieldIndex);
+	bool OnCard(protocol::Card inPacket);
 	void OnGameOver();
 
 
@@ -36,7 +35,8 @@ public:
 	PlayerID GetPlayerID(PlayerType playerType);
 	Player* GetPlayer(PlayerID playerID);
 	Player* GetPlayer(PlayerType playerType);
-
+	PlayerType GetPlayerType(Player* player);
+	PlayerType GetPlayerType(PlayerID playerID);
 private:
 	GameID m_GameID;
 	PlayerID m_Player1ID;

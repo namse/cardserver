@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)include;</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)include;$(ProjectDir)../../Protobuf/Debug;</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)libs\DebugLib;</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -60,9 +60,7 @@
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);libprotoc.lib;libprotobuf.lib;libprotobuf-lite.lib;</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>echo "$(ProjectDir)..\..\ProtoBuf\protoc" --proto_path="$(ProjectDir)..\..\ProtoBuf" --cpp_out="$(ProjectDir)..\..\ProtoBuf\Debug" "$(ProjectDir)..\..\ProtoBuf\protocol.proto"
-
-cd "$(ProjectDir)..\..\ProtoBuf\"
+      <Command>cd "$(ProjectDir)..\..\ProtoBuf\"
 fc "protocol.proto" "prevProtocol"
 echo %ERRORLEVEL%
 

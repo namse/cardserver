@@ -45,9 +45,9 @@ message Card
 
 	message CardTarget
 	{
-		required FieldType fieldType	=	1;
-		required FieldFrontOrBack		=	2;
-		required FieldIndex				=	3;
+		required FieldType fieldType				=	1;
+		required FieldFrontOrBack fieldFrontOrBack	=	2;
+		required FieldIndex	fieldIndex				=	3;
 	}
 
 	required fixed32 playerID		=	1;
