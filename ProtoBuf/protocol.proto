@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+package protocol;
+
+enum MessageType {
+
+ PKT_MAX = 0;
+}

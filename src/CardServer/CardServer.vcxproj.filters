@@ -22,6 +22,9 @@
     <ClInclude Include="Decks.h">
       <Filter>Player\Decks</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\ProtoBuf\Debug\protocol.pb.h">
+      <Filter>Util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CardServer.cpp" />
@@ -42,6 +45,9 @@
     <ClCompile Include="Decks.cpp">
       <Filter>Player\Decks</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\ProtoBuf\Debug\protocol.pb.cc">
+      <Filter>Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Game">
@@ -58,6 +64,9 @@
     </Filter>
     <Filter Include="Player\Field">
       <UniqueIdentifier>{690d05dc-6441-4c6e-8946-c3680830172d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{d6e6d868-1d0b-41ce-9828-23dafe20d59e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
