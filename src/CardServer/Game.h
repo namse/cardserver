@@ -1,12 +1,18 @@
 #pragma once
 #include "Player.h"
 #include "protocol.pb.h"
+#include <vector>
 typedef unsigned int PlayerID;
 typedef unsigned int GameID;
 
+struct ArcaneStackNode
+{
+	Card* arcaneCard;
+	protocol::Card inPacket;
+};
 class Game
 {
-
+public:
 	enum PlayerType
 	{
 		PLAYER_1,
@@ -19,7 +25,6 @@ class Game
 		VISION_PHASE,
 	};
 
-public:
 	Game();
 	~Game();
 
@@ -37,6 +42,11 @@ public:
 	Player* GetPlayer(PlayerType playerType);
 	PlayerType GetPlayerType(Player* player);
 	PlayerType GetPlayerType(PlayerID playerID);
+
+	Player* GetEnemyPlayer(Player* player);
+
+	void PushArcaneCardInStack(Card* card,
+		protocol::Card& inPacket);
 private:
 	GameID m_GameID;
 	PlayerID m_Player1ID;
@@ -49,5 +59,7 @@ private:
 	PlayerType m_TurnPlayerType;
 	PlayerType m_ArcaneTurnPlayerType;
 	Phase m_Phase;
+
+	std::vector<ArcaneStackNode> m_ArcaneStack;
 };
 

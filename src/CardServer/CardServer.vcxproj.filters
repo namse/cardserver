@@ -9,7 +9,6 @@
     <ClInclude Include="Game.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Card.h" />
     <ClInclude Include="Player.h">
       <Filter>Player</Filter>
     </ClInclude>
@@ -25,6 +24,9 @@
     <ClInclude Include="..\..\ProtoBuf\Debug\protocol.pb.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="Card.h">
+      <Filter>Card</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CardServer.cpp" />
@@ -32,7 +34,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="Card.cpp" />
     <ClCompile Include="Player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
@@ -47,6 +48,9 @@
     </ClCompile>
     <ClCompile Include="..\..\ProtoBuf\Debug\protocol.pb.cc">
       <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Card.cpp">
+      <Filter>Card</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +71,9 @@
     </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{d6e6d868-1d0b-41ce-9828-23dafe20d59e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Card">
+      <UniqueIdentifier>{2c710bc5-a4e6-48df-85e3-2ed861e90c05}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

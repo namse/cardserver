@@ -75,9 +75,20 @@ bool Game::OnCard(protocol::Card inPacket)
 
 	if (card->AvailableAction(inPacket, this) == false)
 		return false;
+	switch (cardType)
+	{
+	case Hands::CardType::UNIT:
+		card->DoAction(inPacket, this);
+		break;
+		
+	case Hands::CardType::ARCANE:
+		PushArcaneCardInStack(card, inPacket);
+		break;
+	}
 
-	card->DoAction(inPacket, this);
-	
+	// Mana Costing
+	GetPlayer(playerType)->CostMana(card->GetCostMana());
+
 	// 4. Send Card Packet
 }
 
@@ -113,4 +124,30 @@ Game::PlayerType Game::GetPlayerType(PlayerID playerID)
 {
 	//assert(playerID == m_Player1ID || playerID == m_Player2ID);
 	return playerID == m_Player1ID ? PlayerType::PLAYER_1 : PlayerType::PLAYER_2;
+}
+
+void Game::PushArcaneCardInStack(Card* card, protocol::Card& inPacket)
+{
+	ArcaneStackNode node;
+	node.inPacket.CopyFrom(inPacket);
+	node.arcaneCard = card;
+	m_ArcaneStack.push_back(node);
+}
+
+void Game::OnTurn()
+{
+	while (!m_ArcaneStack.empty())
+	{
+		auto arcaneNode = m_ArcaneStack.back();
+		m_ArcaneStack.pop_back();
+
+		arcaneNode.arcaneCard->DoAction(arcaneNode.inPacket, this);
+	}
+
+}
+
+Player* Game::GetEnemyPlayer(Player* player)
+{
+	//assert(player == m_Player1 || player == m_Player2);
+	return player == &m_Player1 ? &m_Player2 : &m_Player1;
 }
