@@ -30,11 +30,13 @@ public:
 
 	void OnPacket();
 
-	void OnStart();
+	void OnStart(PlayerID player1ID, PlayerID player2ID);
 	void OnTurn();
 	bool OnCard(protocol::Card inPacket);
 	void OnGameOver();
 
+
+	bool IsGameOver();
 
 	PlayerID GetPlayerID(Player* player);
 	PlayerID GetPlayerID(PlayerType playerType);
@@ -61,5 +63,9 @@ private:
 	Phase m_Phase;
 
 	std::vector<ArcaneStackNode> m_ArcaneStack;
+
+	bool m_IsFirstTurn;
+
+	
 };
 

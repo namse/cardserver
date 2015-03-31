@@ -136,6 +136,8 @@ void Game::PushArcaneCardInStack(Card* card, protocol::Card& inPacket)
 
 void Game::OnTurn()
 {
+	// send packet
+
 	while (!m_ArcaneStack.empty())
 	{
 		auto arcaneNode = m_ArcaneStack.back();
@@ -144,10 +146,76 @@ void Game::OnTurn()
 		arcaneNode.arcaneCard->DoAction(arcaneNode.inPacket, this);
 	}
 
+	for (int i = 0; i < 2; i++) // Front or End
+	{
+		for (int l = 0; l < 3; l++) // field index
+		{
+			Field::FrontOrBack fob = (Field::FrontOrBack)i;
+			Field::CardIndex index = (Field::CardIndex)l;
+
+			auto card = GetPlayer(m_TurnPlayerType)->GetField()->GetCard(fob, index);
+			if (nullptr == card)
+				continue;
+
+			// TODO : if (attack able on index)
+
+			card->DoAttack(this);
+		}
+	}
+
+	for (int i = 0; i < 2; i++) // Front or End
+	{
+		for (int l = 0; l < 3; l++) // field index
+		{
+			Field::FrontOrBack fob = (Field::FrontOrBack)i;
+			Field::CardIndex index = (Field::CardIndex)l;
+
+			auto player = GetPlayer(m_TurnPlayerType);
+			auto field = player->GetField();
+			auto card = field->GetCard(fob, index);
+			if (nullptr == card)
+				continue;
+
+			if (card->IsDead())
+			{
+				field->SetCard(fob, index, nullptr);
+				auto deck = player->GetDecks();
+				deck->PushCard(card);
+			}
+		}
+	}
+
+	if (IsGameOver())
+	{
+		OnGameOver();
+	}
+	else
+	{
+		m_TurnPlayerType = GetPlayerType(GetEnemyPlayer(GetPlayer(m_TurnPlayerType)));
+		m_Phase = Phase::UNIT_PHASE;
+	}
+
+
+
 }
 
 Player* Game::GetEnemyPlayer(Player* player)
 {
 	//assert(player == m_Player1 || player == m_Player2);
 	return player == &m_Player1 ? &m_Player2 : &m_Player1;
+}
+
+bool Game::IsGameOver()
+{
+	bool isPlayer1Die = m_Player1.GetHP() <= 0;
+	bool isPlayer2Die = m_Player2.GetHP() <= 0;
+
+	return isPlayer1Die || isPlayer2Die;
+}
+
+void Game::OnGameOver()
+{
+	// send packet
+
+	// remove all.
 }

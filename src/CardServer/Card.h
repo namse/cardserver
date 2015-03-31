@@ -1,6 +1,8 @@
 #pragma once
 #include "protocol.pb.h"
 typedef unsigned int Mana;
+typedef unsigned int HP;
+typedef unsigned int Damage;
 class Card
 {
 	enum CardType
@@ -26,6 +28,8 @@ public:
 	virtual void OnDie();
 
 	virtual Mana GetCostMana(){ return m_CostMana; }
+
+	bool IsDead(){ return m_HP <= 0; }
 private:
 	bool AvailableUnitSpace(protocol::Card& inPacket, const void* gameRef);
 	bool AvailableMana(protocol::Card& inPacket, const void* gameRef);
@@ -37,4 +41,7 @@ private:
 	Mana m_CostMana;
 	CardType m_CardType;
 	UnitAttackType m_UnitAttackType;
+	HP m_HP;
+	Damage m_Damage;
+
 };

@@ -127,4 +127,27 @@ void* Card::FindMyOwnerPlayer(const void* gameRef)
 		}
 	}
 	//assert(false); // 여기까지 오면 안됌~
+	return nullptr;
+}
+
+int Card::OnAttack(int damage)
+{
+	m_HP -= damage;
+
+	if (m_HP < 0)
+	{
+		OnDie();
+	}
+
+	return GetDamage();
+}
+
+int Card::GetDamage()
+{
+	return m_Damage;
+}
+
+void Card::OnDie()
+{
+
 }

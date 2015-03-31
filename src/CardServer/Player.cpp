@@ -10,3 +10,8 @@ Player::~Player()
 {
 
 }
+
+void Player::OnAttack(int damage)
+{
+	m_HP -= damage;
+}

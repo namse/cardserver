@@ -16,9 +16,13 @@ public:
 	void CostMana(Mana mana){ m_Mana -= mana; }
 
 	void OnAttack(int damage);
+
+	HP GetHP(){ return m_HP; }
 private:
 	Field m_Field;
 	Hands m_Hands;
 	Decks m_Decks;
 	Mana m_Mana;
+
+	HP m_HP;
 };
