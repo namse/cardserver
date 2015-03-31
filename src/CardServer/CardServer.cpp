@@ -2,11 +2,11 @@
 //
 
 #include "stdafx.h"
-
+#include "WebSocketServer.cpp"
 int _tmain(int argc, _TCHAR* argv[])
 {
-	int a[10];
-	a[12];
+	WebSocketServer	server;
+	server.main();
 	return 0;
 }
 

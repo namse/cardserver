@@ -65,7 +65,5 @@ private:
 	std::vector<ArcaneStackNode> m_ArcaneStack;
 
 	bool m_IsFirstTurn;
-
-	
 };
 

@@ -7,73 +7,82 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Game.h">
-      <Filter>Game</Filter>
+      <Filter>InGame\Game</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Player</Filter>
+      <Filter>InGame\Player</Filter>
     </ClInclude>
     <ClInclude Include="Hands.h">
-      <Filter>Player\Hands</Filter>
+      <Filter>InGame\Player\Hands</Filter>
     </ClInclude>
     <ClInclude Include="Field.h">
-      <Filter>Player\Field</Filter>
+      <Filter>InGame\Player\Field</Filter>
     </ClInclude>
     <ClInclude Include="Decks.h">
-      <Filter>Player\Decks</Filter>
+      <Filter>InGame\Player\Decks</Filter>
     </ClInclude>
     <ClInclude Include="..\..\ProtoBuf\Debug\protocol.pb.h">
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="Card.h">
-      <Filter>Card</Filter>
+      <Filter>InGame\Card</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CardServer.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Game.cpp">
-      <Filter>Game</Filter>
+      <Filter>InGame\Game</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Player</Filter>
+      <Filter>InGame\Player</Filter>
     </ClCompile>
     <ClCompile Include="Hands.cpp">
-      <Filter>Player\Hands</Filter>
+      <Filter>InGame\Player\Hands</Filter>
     </ClCompile>
     <ClCompile Include="Field.cpp">
-      <Filter>Player\Field</Filter>
+      <Filter>InGame\Player\Field</Filter>
     </ClCompile>
     <ClCompile Include="Decks.cpp">
-      <Filter>Player\Decks</Filter>
+      <Filter>InGame\Player\Decks</Filter>
     </ClCompile>
     <ClCompile Include="..\..\ProtoBuf\Debug\protocol.pb.cc">
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="Card.cpp">
-      <Filter>Card</Filter>
+      <Filter>InGame\Card</Filter>
+    </ClCompile>
+    <ClCompile Include="WebSocketServer.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Game">
-      <UniqueIdentifier>{ae67be86-5a53-41a3-afa5-8da219851315}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Player">
-      <UniqueIdentifier>{270e291c-df75-41a1-8ced-dc9cb0d22568}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Player\Decks">
-      <UniqueIdentifier>{f4006aac-f7b0-4756-a66e-191019dccf18}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Player\Hands">
-      <UniqueIdentifier>{d538e990-3d8c-4a84-9200-e6f16206f20d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Player\Field">
-      <UniqueIdentifier>{690d05dc-6441-4c6e-8946-c3680830172d}</UniqueIdentifier>
+    <Filter Include="InGame">
+      <UniqueIdentifier>{c809cacf-a97e-4c45-85f0-ba0e433a3650}</UniqueIdentifier>
     </Filter>
     <Filter Include="Util">
       <UniqueIdentifier>{d6e6d868-1d0b-41ce-9828-23dafe20d59e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Card">
+    <Filter Include="InGame\Player">
+      <UniqueIdentifier>{270e291c-df75-41a1-8ced-dc9cb0d22568}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InGame\Player\Decks">
+      <UniqueIdentifier>{f4006aac-f7b0-4756-a66e-191019dccf18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InGame\Player\Hands">
+      <UniqueIdentifier>{d538e990-3d8c-4a84-9200-e6f16206f20d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InGame\Player\Field">
+      <UniqueIdentifier>{690d05dc-6441-4c6e-8946-c3680830172d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InGame\Game">
+      <UniqueIdentifier>{ae67be86-5a53-41a3-afa5-8da219851315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InGame\Card">
       <UniqueIdentifier>{2c710bc5-a4e6-48df-85e3-2ed861e90c05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{8b5d6827-8bea-4669-8e9d-5838ac684225}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
